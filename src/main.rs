@@ -1,6 +1,7 @@
 use std::f32;
 use std::f64;
 use std::env;
+use std::fmt;
 use std::process;
 
 
@@ -9,6 +10,12 @@ struct Bounded32 {
     value: f32,
     lower: f32,
     upper: f32,
+}
+
+impl fmt::Display for Bounded32 {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{} (+{}) (-{})", self.value, self.upper, self.lower)
+    }
 }
 
 fn machine_eps_f32(value: f32) -> Bounded32 {
@@ -41,6 +48,12 @@ struct Bounded64 {
     value: f64,
     lower: f64,
     upper: f64,
+}
+
+impl fmt::Display for Bounded64 {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{} (+{}) (-{})", self.value, self.upper, self.lower)
+    }
 }
 
 fn machine_eps_f64(value: f64) -> Bounded64 {
