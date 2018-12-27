@@ -5,10 +5,16 @@ use std::fmt;
 use std::process;
 
 
+///
+/// Represents a 32 bit floating point with error bounds.
+///
 #[derive(Copy, Clone, Debug, PartialEq)]
 struct Bounded32 {
+    /// The value of the floating point number.
     value: f32,
+    /// The precision of the lower bound.
     lower: f32,
+    /// The precision of the upper bound.
     upper: f32,
 }
 
@@ -18,6 +24,9 @@ impl fmt::Display for Bounded32 {
     }
 }
 
+///
+/// Calculate the precision of the 32 bit floating point number.
+///
 fn machine_eps_f32(value: f32) -> Bounded32 {
     #[repr(C)]
     union Union32 {
@@ -43,10 +52,16 @@ fn machine_eps_f32(value: f32) -> Bounded32 {
 }
 
 
+///
+/// Represents a 64 bit floating point with error bounds.
+///
 #[derive(Copy, Clone, Debug, PartialEq)]
 struct Bounded64 {
+    /// The value of the floating point number.
     value: f64,
+    /// The precision of the lower bound.
     lower: f64,
+    /// The precision of the upper bound.
     upper: f64,
 }
 
@@ -56,6 +71,9 @@ impl fmt::Display for Bounded64 {
     }
 }
 
+///
+/// Calculate the precision of a 64 bit floating point number.
+///
 fn machine_eps_f64(value: f64) -> Bounded64 {
     #[repr(C)]
     union Union64 {
