@@ -4,7 +4,14 @@ use std::env;
 use std::process;
 
 
-fn machine_eps_f32(value: f32) -> (f32, f32) {
+#[derive(Copy, Clone, Debug, PartialEq)]
+struct Bounded32 {
+    value: f32,
+    lower: f32,
+    upper: f32,
+}
+
+fn machine_eps_f32(value: f32) -> Bounded32 {
     #[repr(C)]
     union Union32 {
         f: f32,
@@ -21,10 +28,22 @@ fn machine_eps_f32(value: f32) -> (f32, f32) {
         u.f
     };
 
-    (f32::abs(value - value_minus_one), f32::abs(value_plus_one - value))
+    Bounded32 {
+        value: value,
+        lower: f32::abs(value - value_minus_one),
+        upper: f32::abs(value_plus_one - value)
+    }
 }
 
-fn machine_eps_f64(value: f64) -> (f64, f64) {
+
+#[derive(Copy, Clone, Debug, PartialEq)]
+struct Bounded64 {
+    value: f64,
+    lower: f64,
+    upper: f64,
+}
+
+fn machine_eps_f64(value: f64) -> Bounded64 {
     #[repr(C)]
     union Union64 {
         f: f64,
@@ -41,7 +60,11 @@ fn machine_eps_f64(value: f64) -> (f64, f64) {
         u.f
     };
 
-    (f64::abs(value - value_minus_one), f64::abs(value_plus_one - value))
+    Bounded64 {
+        value: value,
+        lower: f64::abs(value - value_minus_one),
+        upper: f64::abs(value_plus_one - value),
+    }
 }
 
 fn usage() -> String {
