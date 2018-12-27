@@ -8,7 +8,7 @@ The program `meps` is a shell program. To use it from your shell, enter
 ```bash
 meps <floating point number>
 ```
-where `<floating point number` is a string representing a floating point number.
+where `<floating point number>` is a string representing a floating point number.
 
 ## Installation
 Install `meps` by forking this repository and entering
