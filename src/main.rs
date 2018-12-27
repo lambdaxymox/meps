@@ -103,6 +103,6 @@ fn main() {
     let num_f32 = maybe_num_f32.unwrap();
     let num_f64 = maybe_num_f64.unwrap();
 
-    println!("{:?}", machine_eps_f32(num_f32));
-    println!("{:?}", machine_eps_f64(num_f64));
+    println!("{} at 32 bits", machine_eps_f32(num_f32));
+    println!("{} at 64 bits", machine_eps_f64(num_f64));
 }
