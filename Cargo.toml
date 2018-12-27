@@ -3,5 +3,6 @@ name = "meps"
 version = "1.0.0"
 authors = ["Stallmanifold <stallmanifold@gmail.com>"]
 edition = "2018"
+description = "A shell utility that calculates the error bounds in representing floating point numbers."
 
 [dependencies]
